@@ -465,7 +465,7 @@ abstract class PlacesAutocompleteState extends State<PlacesAutocompleteWidget> {
     super.initState();
 
     _queryTextController = TextEditingController(text: widget.startText);
-    widget?.textController = _queryTextController;
+    widget.textController = _queryTextController;
     _queryTextController!.selection = TextSelection(
       baseOffset: 0,
       extentOffset: widget.startText?.length ?? 0,
