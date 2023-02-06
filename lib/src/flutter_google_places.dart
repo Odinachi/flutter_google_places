@@ -29,7 +29,7 @@ class PlacesAutocompleteWidget extends StatefulWidget {
   final InputDecoration? decoration;
   final TextStyle? textStyle;
   final ThemeData? themeData;
-  final TextEditingController? textController;
+  TextEditingController? textController;
   final FocusNode? focusNode;
   final bool autoFocus;
 
@@ -51,7 +51,7 @@ class PlacesAutocompleteWidget extends StatefulWidget {
   /// In case of changing the default text style of result's text
   final TextStyle? resultTextStyle;
 
-  const PlacesAutocompleteWidget({
+  PlacesAutocompleteWidget({
     required this.apiKey,
     this.mode = Mode.fullscreen,
     this.hint = "Search",
@@ -464,8 +464,8 @@ abstract class PlacesAutocompleteState extends State<PlacesAutocompleteWidget> {
   void initState() {
     super.initState();
 
-    _queryTextController =
-        widget.textController ?? TextEditingController(text: widget.startText);
+    _queryTextController = TextEditingController(text: widget.startText);
+    widget?.textController = _queryTextController;
     _queryTextController!.selection = TextSelection(
       baseOffset: 0,
       extentOffset: widget.startText?.length ?? 0,
