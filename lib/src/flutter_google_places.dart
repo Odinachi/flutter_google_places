@@ -29,6 +29,9 @@ class PlacesAutocompleteWidget extends StatefulWidget {
   final InputDecoration? decoration;
   final TextStyle? textStyle;
   final ThemeData? themeData;
+  final TextEditingController? textController;
+  final FocusNode? focusNode;
+  final bool autoFocus;
 
   /// optional - sets 'proxy' value in google_maps_webservice
   ///
@@ -73,6 +76,9 @@ class PlacesAutocompleteWidget extends StatefulWidget {
     this.textStyle,
     this.themeData,
     this.resultTextStyle,
+    this.textController,
+    this.focusNode,
+    this.autoFocus = true,
   }) : super(key: key);
 
   @override
@@ -95,6 +101,8 @@ class _PlacesAutocompleteOverlayState extends PlacesAutocompleteState {
             title: AppBarPlacesAutoCompleteTextField(
               textDecoration: widget.decoration,
               textStyle: widget.textStyle,
+              focusNode: widget.focusNode,
+              autofocus: widget.autoFocus,
             ),
           ),
           body: PlacesAutocompleteResult(
@@ -456,7 +464,8 @@ abstract class PlacesAutocompleteState extends State<PlacesAutocompleteWidget> {
   void initState() {
     super.initState();
 
-    _queryTextController = TextEditingController(text: widget.startText);
+    _queryTextController =
+        widget.textController ?? TextEditingController(text: widget.startText);
     _queryTextController!.selection = TextSelection(
       baseOffset: 0,
       extentOffset: widget.startText?.length ?? 0,
