@@ -29,7 +29,7 @@ class PlacesAutocompleteWidget extends StatefulWidget {
   final InputDecoration? decoration;
   final TextStyle? textStyle;
   final ThemeData? themeData;
-  TextEditingController? textController;
+  late final TextEditingController? textController;
   final FocusNode? focusNode;
   final bool autoFocus;
 
